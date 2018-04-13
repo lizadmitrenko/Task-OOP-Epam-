@@ -19,6 +19,7 @@ public class Printer {
 
     private static void printProduct(Product product) throws NoSuchFieldException,IllegalAccessException{
         Field [] fields = product.getClass().getDeclaredFields();
+        System.out.print(product.getClass().getSimpleName()+": ");
         for(Field f: fields) {
             f.setAccessible(true);
             System.out.print(f.getName()+" = "+f.get(product)+", ");

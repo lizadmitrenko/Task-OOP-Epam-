@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import handling.Parser;
 import handling.Printer;
+import handling.Reader;
 import handling.Searcher;
 import product.Product;
 
@@ -15,13 +16,9 @@ import product.Product;
 public class Main {
     public static void main(String[] args) throws IOException, NoSuchFieldException, IllegalAccessException {
             Scanner sc = new Scanner(new File("appliances_db.txt"));
-            Parser parser;
-            List<Product> products = new ArrayList();
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                parser = new Parser();
-                products.add(parser.parse(line));
-            }
+            Parser parser = new Parser();
+            List<Product> products = new ArrayList<>();
+            products = Reader.readFile(sc,parser,products);
             Printer printer = new Printer();
             Searcher searcher = new Searcher();
             List<Product> searched;
